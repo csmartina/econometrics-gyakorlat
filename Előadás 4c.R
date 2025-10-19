@@ -24,7 +24,16 @@
 # CLEAR MEMORY
 rm(list=ls())
 
-
+install.packages("tidyverse")
+install.packages("caret")
+install.packages("skimr")
+install.packages("grid")
+install.packages("glmnet")
+install.packages("stargazer")
+install.packages("xtable")
+install.packages("directlabels")
+install.packages("knitr")
+install.packages("cowplot")
 # Descriptive statistics and regressions
 library(tidyverse)
 library(caret)
@@ -37,7 +46,7 @@ library(directlabels)
 library(knitr)
 library(cowplot)
 
-data<-read.csv(paste0("C:/ElekP/Oktatas/Machine_Learning/Data/airbnb_hackney_work_book.csv"), stringsAsFactors = FALSE)
+data<-read.csv(paste0("/Users/Shared/Files From d.localized/corvinus/econometrics/gyak/airbnb_hackney_work_book.csv"), stringsAsFactors = FALSE)
 
 data <- data %>%
   filter(n_accommodates < 8
@@ -57,6 +66,9 @@ data %>%
   dplyr::summarize(mean_price = mean(price, na.rm=TRUE))
 
 Hmisc::describe(data$price)
+
+install.packages("Hmisc")
+library(Hmisc)
 
 # NB all graphs, we exclude  extreme values of price
 datau <- subset(data, price<400)
@@ -308,3 +320,4 @@ model_result_plot_levels <- ggplot(data = t1_levels,
   scale_x_discrete( name = "Number of coefficients", expand=c(0.01, 0.01)) +
   geom_dl(aes(label = var),  method = list("last.points", dl.trans(x=x-1), cex=0.4))
 model_result_plot_levels
+
